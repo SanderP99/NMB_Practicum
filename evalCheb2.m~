@@ -1,0 +1,34 @@
+function v = evalCheb(a,x)
+
+N = size(a,2);
+
+% Check dat a en x dezelfde lengte hebben
+if size(x,2) ~= N
+    
+end
+
+% Bepalen van Chebyshev veeltermen tot graad N
+% LET OP: index begint vanaf 1!
+syms z
+T{1} = 1 + 0*z;
+T{2} = z;
+
+if N > 2
+    for i = 3:1:N
+        T{i} = 2 * z * T(i-1) - T(i-2);
+    end
+end
+
+% Vector v invullen
+v = zeros(1,N);
+for i = 1:1:N % v loop
+    for j = 1:1:N
+    end
+end
+
+
+
+% z = 2;
+% disp(simplify(T{N}))
+% subs(T{N})
+% disp(T{N})

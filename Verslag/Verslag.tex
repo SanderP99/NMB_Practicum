@@ -1,0 +1,60 @@
+\documentclass[a4paper, 12pt, titlepage]{article}
+
+%Taal: Nederlands ("Inhoudsopgave", "Hoofdstuk",...)
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath, amssymb, textcomp, mathtools}
+\usepackage{geometry}
+	\geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
+
+%Hyperlinks
+\usepackage{hyperref}
+
+%Opmaak hyperlinks
+\hypersetup{colorlinks=false,	urlcolor=cyan,pdfborder=0 0 0}
+
+%geen indents
+\setlength\parindent{0pt}
+
+\usepackage{listings}
+\lstset{
+language=Matlab, % choose the language of the code
+%basicstyle=10pt, % the size of the fonts that are used for the code
+numbers=left, % where to put the line-numbers
+numberstyle=\footnotesize, % the size of the fonts that are used for the line-numbers
+stepnumber=1, % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt, % how far the line-numbers are from the code
+%backgroundcolor=\color{grey}, % choose the background color. You must add \usepackage{color}
+showspaces=false, % show spaces adding particular underscores
+showstringspaces=false, % underline spaces within strings
+showtabs=false, % show tabs within strings adding particular underscores
+frame=single, % adds a frame around the code
+%tabsize=2, % sets default tabsize to 2 spaces
+%captionpos=b, % sets the caption-position to bottom
+breaklines=true, % sets automatic line breaking
+breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)} % if you want to add a comment within your code
+}
+
+
+\usepackage[dutch]{babel}
+\begin{document}
+
+\title{\textbf{Numerieke Modellering en Benadering: Chebyshev veeltermen}}
+\author{Sander Prenen}
+
+\date{15 april 2020}
+\begin{titlepage}
+	\maketitle
+	\thispagestyle{empty}
+\end{titlepage}
+
+\newpage
+\section{Continue kleinste kwadratenbenadering met Chebyshev veeltermen}
+In dit practicum wordt geprobeerd continue functies op eindige, re\"ele intervallen te benaderen aan de hand van Chebyshev-veeltermen van de eerste soort. Dit zijn veeltermen die voldoen aan de volgende voorwaarde: $T_k(x) = \cos(k \arccos (x))$ voor $x \in [-1,1]$ en $k = 0,1,2,\ldots$
+
+\subsection{Evalueren van de Chebyshev veeltermen}
+De functie \texttt{evalCheb} geeft een vector $v = (f_1, f_2, \ldots, f_N) \in \mathbb{R}^N$ terug. Deze vector wordt bekomen uit inputvectoren $a = (a_0,a_1,\ldots, a_n) \in \mathbb{R}^{n+1}$ en $x = (x_1,x_2,\ldots,x_N) \in \mathbb{R}^N$ op de volgende manier:
+$$f_i = y_n(x_i) = a_0T_0(x_i) + a_1T_1(x_i) + \ldots + a_nT_n(x_i)$$
+
+\end{document}
