@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt, titlepage]{article}
+\documentclass[a4paper, 12pt, titlepage, fleqn]{article}
 
 %Taal: Nederlands ("Inhoudsopgave", "Hoofdstuk",...)
 \usepackage{graphicx}
@@ -6,16 +6,15 @@
 \usepackage{amsmath, amssymb, textcomp, mathtools}
 \usepackage{geometry}
 	\geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
-
+\setlength{\mathindent}{1cm}
 %Hyperlinks
 \usepackage{hyperref}
 
 %Opmaak hyperlinks
 \hypersetup{colorlinks=false,	urlcolor=cyan,pdfborder=0 0 0}
-
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 %geen indents
 \setlength\parindent{0pt}
-
 \usepackage{listings}
 \lstset{
 language=Matlab, % choose the language of the code
@@ -30,7 +29,7 @@ showstringspaces=false, % underline spaces within strings
 showtabs=false, % show tabs within strings adding particular underscores
 frame=single, % adds a frame around the code
 %tabsize=2, % sets default tabsize to 2 spaces
-%captionpos=b, % sets the caption-position to bottom
+captionpos=b, % sets the caption-position to bottom
 breaklines=true, % sets automatic line breaking
 breakatwhitespace=false, % sets if automatic breaks should only happen at whitespace
 escapeinside={\%*}{*)} % if you want to add a comment within your code
@@ -51,10 +50,64 @@ escapeinside={\%*}{*)} % if you want to add a comment within your code
 
 \newpage
 \section{Continue kleinste kwadratenbenadering met Chebyshev veeltermen}
-In dit practicum wordt geprobeerd continue functies op eindige, re\"ele intervallen te benaderen aan de hand van Chebyshev-veeltermen van de eerste soort. Dit zijn veeltermen die voldoen aan de volgende voorwaarde: $T_k(x) = \cos(k \arccos (x))$ voor $x \in [-1,1]$ en $k = 0,1,2,\ldots$
+In dit practicum wordt geprobeerd continue functies op eindige, re\"ele intervallen te benaderen aan de hand van Chebyshev-veeltermen van de eerste soort. Dit zijn veeltermen die voldoen aan de volgende voorwaarde: $T_k(x) = \cos(k \arccos (x))$ voor $x \in [-1,1]$ en $k = 0,1,2,\ldots$ De veeltermen zijn een basis voor de ruimte $V_n$, een deelvectorruimte van $C([-1,1])$. 
 
 \subsection{Evalueren van de Chebyshev veeltermen}
 De functie \texttt{evalCheb} geeft een vector $v = (f_1, f_2, \ldots, f_N) \in \mathbb{R}^N$ terug. Deze vector wordt bekomen uit inputvectoren $a = (a_0,a_1,\ldots, a_n) \in \mathbb{R}^{n+1}$ en $x = (x_1,x_2,\ldots,x_N) \in \mathbb{R}^N$ op de volgende manier:
-$$f_i = y_n(x_i) = a_0T_0(x_i) + a_1T_1(x_i) + \ldots + a_nT_n(x_i)$$
+\begin{equation*}
+f_i = y_n(x_i) = a_0T_0(x_i) + a_1T_1(x_i) + \ldots + a_nT_n(x_i)
+\end{equation*}
+
+In Listing \ref{lst:evalCheb} wordt de MATLAB code voor deze berekening weergegeven.
+
+\lstinputlisting[caption={evalCheb.m}, label = {lst:evalCheb}]{../evalCheb.m}
+
+\subsection{Beste benadering in $V_n$}
+Indien de basisvectoren $T_k(x)$ orthogonale vectoren zijn, geldt volgende uitdrukking voor de beste benadering $y_n(x)$ voor een functie $f(x) \in C([-1,1])$:
+\begin{equation}
+y_n(x) = \sum_{k=0}^na_kT_k(x) \hspace{1cm} \text{met} \hspace{1cm} a_k = \frac{(f,T_k)}{(T_k,T_k)}
+\label{eq:beste_benadering}
+\end{equation}
+
+Met als scalair product:
+\begin{equation*}
+(f,g) = \int_{-1}^1\frac{f(x)g(x)}{\sqrt{1-x^2}}dx
+\end{equation*}
+
+Om deze formule te kunnen gebruiken, moet dus worden aangetoond dat de basisvectoren orthogonaal zijn. Dit wil zeggen dat alle onderlinge scalaire producten nul zijn, tenzij dat van een basisvector met zichzelf. 
+
+\subsubsection{Orthogonaliteit van de basisvectoren $T_k$}
+In deze sectie wordt de ortohgonaliteit van de basisvecoren bekeken. Hiervoor moeten alle onderlinge scalaire producten bepaald worden. Dit wordt gedaan in drie gevallen:
+\begin{itemize}
+\item $k = l = 0$:
+\begin{equation*}
+\int_{-1}^1 \frac{T_0^2(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1 \frac{1}{\sqrt{1-x^2}}dx =\left[\arcsin(x)\right]_{-1}^1 = \pi
+\end{equation*}
+\item $k = l \neq 0$:
+\begin{equation*}
+\int_{-1}^1\frac{T_k^2(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1\frac{\cos^2(k \arccos(x))}{\sqrt{1-x^2}}dx = \frac{2\pi k + \sin(2\pi k)}{4k} = \frac{\pi}{2}
+\end{equation*}
+\item $k \neq l$:
+\begin{align*}
+\int_{-1}^1\frac{T_k(x)T_l(x)}{\sqrt{1-x^2}}dx &= \int_{-1}^1\frac{\cos(k \arccos(x))\cos(l \arccos(x))}{\sqrt{1-x^2}}dx\\
+&=\frac{1}{2}\int_{-1}^1\frac{\cos((k-l)\arccos(x)}{\sqrt{1-x^2}}dx + \frac{1}{2}\int_{-1}^1\frac{\cos((k+l)\arccos(x)}{\sqrt{1-x^2}}dx\\
+&=\frac{1}{2}\frac{\sin((k-l)\pi)}{k-l} + \frac{1}{2}\frac{\sin((k+l)\pi)}{k+l} = 0
+\end{align*}
+\end{itemize}
+Alle scalaire prodcuten zijn nul, behalve die van basisvectoren met zichzelf. De vectoren zijn dus orthogonaal.
+
+\subsubsection{Beste benadering}
+Doordat de basisvectoren orthogonaal zijn, kan formule (\ref{eq:beste_benadering}) gebruikt worden. In deze sectie worden de co\"effic\"enten $a_k$ bepaald.
+\begin{align*}
+a_k &= \frac{(f,T_k)}{(T_k,T_k)} = \frac{1}{(T_k,T_k)}\int_{-1}^1\frac{f(x)T_k(x)}{\sqrt{1-x^2}}dx = \frac{1}{(T_k,T_k)}\int_{-1}^1\frac{f(x)\cos(k \arccos(x))}{\sqrt{1-x^2}}dx\\
+&= \frac{1}{(T_k,T_k)}\int_\pi^0\frac{f(\cos \theta)\cos(k\theta)(-\sin(\theta))}{\sqrt{1-\cos^2(\theta)}}d\theta = \frac{1}{(T_k,T_k)}\int_0^\pi f(\cos \theta) cos(k\theta)d\theta
+\end{align*}
+Dit geeft dus volgende uitdrukking voor $a_k$:
+\begin{align*}
+a_k = \begin{cases}
+\frac{1}{\pi}\int_0^\pi f(\cos \theta)d\theta, & k = 0\\
+\frac{2}{\pi}\int_0^\pi f(\cos \theta)\cos(k\theta)d\theta, & k > 0
+\end{cases}
+\end{align*}
 
 \end{document}
