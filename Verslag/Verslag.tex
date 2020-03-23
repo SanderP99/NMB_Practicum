@@ -75,7 +75,7 @@ Om deze formule te kunnen gebruiken, moet dus worden aangetoond dat de basisvect
 
 \subsubsection{Orthogonaliteit van de basisvectoren $T_k$}
 \label{subsec:scalaireProducten}
-In deze sectie wordt de ortohgonaliteit van de basisvecoren bekeken. Hiervoor moeten alle onderlinge scalaire producten bepaald worden. Dit wordt gedaan in drie gevallen:
+In deze sectie wordt de orthogonaliteit van de basisvectoren bekeken. Hiervoor moeten alle onderlinge scalaire producten bepaald worden. Dit wordt gedaan in drie gevallen:
 \begin{itemize}
 \item $k = l = 0$:
 \begin{equation*}
@@ -87,12 +87,12 @@ In deze sectie wordt de ortohgonaliteit van de basisvecoren bekeken. Hiervoor mo
 \end{equation*}
 \item $k \neq l$:
 \begin{align*}
-(T_k,T_l) = \int_{-1}^1\frac{T_k(x)T_l(x)}{\sqrt{1-x^2}}dx &= \int_{-1}^1\frac{\cos(k \arccos(x))\cos(l \arccos(x))}{\sqrt{1-x^2}}dx\\
+(T_k,T_l) &= \int_{-1}^1\frac{T_k(x)T_l(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1\frac{\cos(k \arccos(x))\cos(l \arccos(x))}{\sqrt{1-x^2}}dx\\
 &=\frac{1}{2}\int_{-1}^1\frac{\cos((k-l)\arccos(x))}{\sqrt{1-x^2}}dx + \frac{1}{2}\int_{-1}^1\frac{\cos((k+l)\arccos(x))}{\sqrt{1-x^2}}dx\\
 &=\frac{1}{2}\frac{\sin((k-l)\pi)}{k-l} + \frac{1}{2}\frac{\sin((k+l)\pi)}{k+l} = 0
 \end{align*}
 \end{itemize}
-Alle scalaire prodcuten zijn nul, behalve die van basisvectoren met zichzelf. De vectoren zijn dus orthogonaal.
+Alle scalaire producten zijn nul, behalve die van basisvectoren met zichzelf. De vectoren zijn dus orthogonaal.
 
 \subsubsection{Beste benadering}
 Doordat de basisvectoren orthogonaal zijn, kan formule (\ref{eq:beste_benadering}) gebruikt worden. In deze sectie worden de co\"effic\"enten $a_k$ bepaald.
@@ -151,7 +151,7 @@ In de functie \texttt{approxCheby} wordt de DCT van de rij in vergelijking (\ref
 \subsection{Benaderen van een functie}
 De algoritmes die in Listing \ref{lst:evalCheb} en \ref{lst:approxCheby} te zien zijn, kunnen gebruikt worden bij het benaderen van een willekeurige functie in $C([-1,1])$. Om een functie te benaderen worden de co\"effic\"enten $a_k$ bepaald met \texttt{approxCheby}. Deze co\"effic\"enten worden meegegeven aan \texttt{evalCheb}. De punten waarin de benadering ge\"evalueerd moet worden meegegeven in de $x$ vector. In dit geval wordt gekozen voor 200 equidistante punten tussen $-1$ en $1$.
 
-In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge functie in ruimtes $V_2$ tot $V_{20}$ weergegeven. De Runge functie heeft als voorschrift $f(x) = \frac{1}{25x^2+1}$.
+In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge functie in ruimtes $V_2$ tot $V_{20}$ weergegeven. De Runge functie heeft als voorschrift $f(x) = \frac{1}{25x^2+1}$. Figuur \ref{fig:rungeFout} toont de maximale afwijking $d(y_n,f) = \max_{x \in [-1,1]}|y_n(x)-f(x)|$, in functie van de graad van de benaderende veelterm. 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{../Afbeeldingen/rungeBenadering.eps}
@@ -159,7 +159,14 @@ In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge func
 \label{fig:rungeFunctie}}
 \end{figure}
 
-\section{Interpolatie}
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{../Afbeeldingen/rungeFout.eps}
+\caption{De maximale fout voor de benadering van de runge functie in de ruimtes $V_2$ tot $V_{100}$.
+\label{fig:rungeFout}}
+\end{figure}
+
+\section{Interpolatie in Chebyshev knooppunten}
 \label{sec:interpolatie}
 
 \end{document}
