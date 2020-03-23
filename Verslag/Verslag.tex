@@ -49,18 +49,15 @@ escapeinside={\%*}{*)} % if you want to add a comment within your code
 \end{titlepage}
 
 \newpage
+\tableofcontents
+\newpage
+\section{Inleiding}
+In dit practicum worden de benaderingseigenschappen van Chebyshev veeltermen van de eerste soort. Deze veeltermen blijken uiterst geschikt voor het benaderen van eindige, re\"ele functies met behulp van de continue kleinste kwadratenbenadering. Ook zijn hun nulpunten vaak een uitstekende keuze voor de abscissa voor veelterminterpolatie. In sectie \ref{sec:benadering} wordt dieper ingegaan op de benaderingseigenschappen, terwijl in sectie \ref{sec:interpolatie} de interpolatie besporken wordt.
+
 \section{Continue kleinste kwadratenbenadering met Chebyshev veeltermen}
-In dit practicum wordt geprobeerd continue functies op eindige, re\"ele intervallen te benaderen aan de hand van Chebyshev-veeltermen van de eerste soort. Dit zijn veeltermen die voldoen aan de volgende voorwaarde: $T_k(x) = \cos(k \arccos (x))$ voor $x \in [-1,1]$ en $k = 0,1,2,\ldots$ De veeltermen zijn een basis voor de ruimte $V_n$, een deelvectorruimte van $C([-1,1])$. 
+\label{sec:benadering}
+In deze sectie wordt geprobeerd continue functies op eindige, re\"ele intervallen te benaderen aan de hand van Chebyshev-veeltermen van de eerste soort. Dit zijn veeltermen die voldoen aan de volgende voorwaarde: $T_k(x) = \cos(k \arccos (x))$ voor $x \in [-1,1]$ en $k = 0,1,2,\ldots$ De veeltermen vormen een basis voor de ruimte $V_n$, een deelvectorruimte van $C([-1,1])$. 
 
-\subsection{Evalueren van de Chebyshev veeltermen}
-De functie \texttt{evalCheb} geeft een vector $v = (f_1, f_2, \ldots, f_N) \in \mathbb{R}^N$ terug. Deze vector wordt bekomen uit inputvectoren $a = (a_0,a_1,\ldots, a_n) \in \mathbb{R}^{n+1}$ en $x = (x_1,x_2,\ldots,x_N) \in \mathbb{R}^N$ op de volgende manier:
-\begin{equation*}
-f_i = y_n(x_i) = a_0T_0(x_i) + a_1T_1(x_i) + \ldots + a_nT_n(x_i)
-\end{equation*}
-
-In Listing \ref{lst:evalCheb} wordt de MATLAB code voor deze berekening weergegeven.
-
-\lstinputlisting[caption={evalCheb.m}, label = {lst:evalCheb}]{../evalCheb.m}
 
 \subsection{Beste benadering in $V_n$}
 Indien de basisvectoren $T_k(x)$ orthogonale vectoren zijn, geldt volgende uitdrukking voor de beste benadering $y_n(x)$ voor een functie $f(x) \in C([-1,1])$:
@@ -77,20 +74,21 @@ Met als scalair product:
 Om deze formule te kunnen gebruiken, moet dus worden aangetoond dat de basisvectoren orthogonaal zijn. Dit wil zeggen dat alle onderlinge scalaire producten nul zijn, tenzij dat van een basisvector met zichzelf. 
 
 \subsubsection{Orthogonaliteit van de basisvectoren $T_k$}
+\label{subsec:scalaireProducten}
 In deze sectie wordt de ortohgonaliteit van de basisvecoren bekeken. Hiervoor moeten alle onderlinge scalaire producten bepaald worden. Dit wordt gedaan in drie gevallen:
 \begin{itemize}
 \item $k = l = 0$:
 \begin{equation*}
-\int_{-1}^1 \frac{T_0^2(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1 \frac{1}{\sqrt{1-x^2}}dx =\left[\arcsin(x)\right]_{-1}^1 = \pi
+(T_k,T_l) = \int_{-1}^1 \frac{T_0^2(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1 \frac{1}{\sqrt{1-x^2}}dx =\left[\arcsin(x)\right]_{-1}^1 = \pi
 \end{equation*}
 \item $k = l \neq 0$:
 \begin{equation*}
-\int_{-1}^1\frac{T_k^2(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1\frac{\cos^2(k \arccos(x))}{\sqrt{1-x^2}}dx = \frac{2\pi k + \sin(2\pi k)}{4k} = \frac{\pi}{2}
+(T_k,T_l) = \int_{-1}^1\frac{T_k^2(x)}{\sqrt{1-x^2}}dx = \int_{-1}^1\frac{\cos^2(k \arccos(x))}{\sqrt{1-x^2}}dx = \frac{2\pi k + \sin(2\pi k)}{4k} = \frac{\pi}{2}
 \end{equation*}
 \item $k \neq l$:
 \begin{align*}
-\int_{-1}^1\frac{T_k(x)T_l(x)}{\sqrt{1-x^2}}dx &= \int_{-1}^1\frac{\cos(k \arccos(x))\cos(l \arccos(x))}{\sqrt{1-x^2}}dx\\
-&=\frac{1}{2}\int_{-1}^1\frac{\cos((k-l)\arccos(x)}{\sqrt{1-x^2}}dx + \frac{1}{2}\int_{-1}^1\frac{\cos((k+l)\arccos(x)}{\sqrt{1-x^2}}dx\\
+(T_k,T_l) = \int_{-1}^1\frac{T_k(x)T_l(x)}{\sqrt{1-x^2}}dx &= \int_{-1}^1\frac{\cos(k \arccos(x))\cos(l \arccos(x))}{\sqrt{1-x^2}}dx\\
+&=\frac{1}{2}\int_{-1}^1\frac{\cos((k-l)\arccos(x))}{\sqrt{1-x^2}}dx + \frac{1}{2}\int_{-1}^1\frac{\cos((k+l)\arccos(x))}{\sqrt{1-x^2}}dx\\
 &=\frac{1}{2}\frac{\sin((k-l)\pi)}{k-l} + \frac{1}{2}\frac{\sin((k+l)\pi)}{k+l} = 0
 \end{align*}
 \end{itemize}
@@ -102,12 +100,66 @@ Doordat de basisvectoren orthogonaal zijn, kan formule (\ref{eq:beste_benadering
 a_k &= \frac{(f,T_k)}{(T_k,T_k)} = \frac{1}{(T_k,T_k)}\int_{-1}^1\frac{f(x)T_k(x)}{\sqrt{1-x^2}}dx = \frac{1}{(T_k,T_k)}\int_{-1}^1\frac{f(x)\cos(k \arccos(x))}{\sqrt{1-x^2}}dx\\
 &= \frac{1}{(T_k,T_k)}\int_\pi^0\frac{f(\cos \theta)\cos(k\theta)(-\sin(\theta))}{\sqrt{1-\cos^2(\theta)}}d\theta = \frac{1}{(T_k,T_k)}\int_0^\pi f(\cos \theta) cos(k\theta)d\theta
 \end{align*}
-Dit geeft dus volgende uitdrukking voor $a_k$:
-\begin{align*}
+Dit geeft dus volgende uitdrukking voor $a_k$ gebruikmakend van de uitdrukkingen in sectie \ref{subsec:scalaireProducten}:
+\begin{align}
 a_k = \begin{cases}
 \frac{1}{\pi}\int_0^\pi f(\cos \theta)d\theta, & k = 0\\
 \frac{2}{\pi}\int_0^\pi f(\cos \theta)\cos(k\theta)d\theta, & k > 0
 \end{cases}
+\label{eq:a_K}
+\end{align}
+
+
+
+\subsection{Evalueren van de Chebyshev veeltermen}
+Om de beste benadering numeriek te bepalen, moet vergelijking (\ref{eq:beste_benadering}) ge\"evalueerd worden. De functie \texttt{evalCheb} geeft een vector $v = (f_1, f_2, \ldots, f_N) \in \mathbb{R}^N$ terug. Deze vector wordt bekomen uit inputvectoren $a = (a_0,a_1,\ldots, a_n) \in \mathbb{R}^{n+1}$ en $x = (x_1,x_2,\ldots,x_N) \in \mathbb{R}^N$ op de volgende manier:
+\begin{equation*}
+f_i = y_n(x_i) = a_0T_0(x_i) + a_1T_1(x_i) + \ldots + a_nT_n(x_i)
+\end{equation*}
+
+In Listing \ref{lst:evalCheb} wordt de MATLAB code voor deze berekening weergegeven.
+
+\lstinputlisting[caption={evalCheb.m}, label = {lst:evalCheb}]{../evalCheb.m}
+
+
+\subsection{Bepalen van de co\"effici\"enten}
+Voor het bepalen van de co\"effici\"enten $a_k$ kan vergelijking (\ref{eq:a_K}) gebruikt worden. Deze vergelijking kan met behulp van de trapeziumregel voor numerieke integratie met een discretizatie bestaande uit $n$ intervallen, benaderd worden door:
+\begin{align*}
+a_k \approx \frac{1}{n}f(1) + \frac{2}{n}\sum_{l=1}^{n-1}f\left(\cos\left(\frac{l\pi}{n}\right)\right)\cos\left(k\frac{l\pi}{n}\right) + \frac{(-1)^k}{n}f(-1), \hspace{1cm} 0 < k \leq n
 \end{align*}
+Hieruit volgt dat de co\"effici\"enten $a_k$ kunnen berekend worden als de DCT van de rij:
+\begin{align}
+f(z_{0,n}),f(z_{1,n}), \ldots, f(z_{n,n})
+\label{eq:DCTrij}
+\end{align} 
+Hierin is $z_{l,n} = cos(l\pi/n)$. Deze punten zijn de extrema van $T_k(x)$ aangezien dit de nulpunten zijn van de eerste afgeleide van $T_k(x)$.
+
+\begin{align*}
+\frac{dT_k(x)}{dx} &= \frac{d}{dx}\cos(k\arccos(x)) = -\sin(k \arccos(x))\cdot k \cdot - \frac{1}{\sqrt{1-x^2}}
+\end{align*}
+
+De afgeleide wordt nul als $k=0$ of $\sin(k \arccos(x)) = 0$. In het tweede geval herleidt dit zich tot:
+\begin{align*}
+k\arccos(x) = l\pi \Leftrightarrow x = \cos\left(\frac{l\pi}{k}\right)
+\end{align*}
+
+In de functie \texttt{approxCheby} wordt de DCT van de rij in vergelijking (\ref{eq:DCTrij}) bepaald. De code van deze functie kan gevonden worden in Listing \ref{lst:approxCheby} weergegeven.
+
+\lstinputlisting[caption={approxCheby.m}, label = {lst:approxCheby}]{../approxCheby.m}
+
+
+\subsection{Benaderen van een functie}
+De algoritmes die in Listing \ref{lst:evalCheb} en \ref{lst:approxCheby} te zien zijn, kunnen gebruikt worden bij het benaderen van een willekeurige functie in $C([-1,1])$. Om een functie te benaderen worden de co\"effic\"enten $a_k$ bepaald met \texttt{approxCheby}. Deze co\"effic\"enten worden meegegeven aan \texttt{evalCheb}. De punten waarin de benadering ge\"evalueerd moet worden meegegeven in de $x$ vector. In dit geval wordt gekozen voor 200 equidistante punten tussen $-1$ en $1$.
+
+In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge functie in ruimtes $V_2$ tot $V_{20}$ weergegeven. De Runge functie heeft als voorschrift $f(x) = \frac{1}{25x^2+1}$.
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{../Afbeeldingen/rungeBenadering.eps}
+\caption{De beste benaderingen van de Runge functie in de ruimtes $V_2$ tot $V_{20}$.
+\label{fig:rungeFunctie}}
+\end{figure}
+
+\section{Interpolatie}
+\label{sec:interpolatie}
 
 \end{document}

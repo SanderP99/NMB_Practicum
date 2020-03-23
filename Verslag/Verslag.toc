@@ -1,0 +1,10 @@
+\babel@toc {dutch}{}
+\contentsline {section}{\numberline {1}Inleiding}{2}{section.1}
+\contentsline {section}{\numberline {2}Continue kleinste kwadratenbenadering met Chebyshev veeltermen}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Beste benadering in $V_n$}{2}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Orthogonaliteit van de basisvectoren $T_k$}{2}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Beste benadering}{3}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}Evalueren van de Chebyshev veeltermen}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Bepalen van de co\"effici\"enten}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Benaderen van een functie}{5}{subsection.2.4}
+\contentsline {section}{\numberline {3}Interpolatie}{5}{section.3}
