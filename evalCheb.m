@@ -1,8 +1,9 @@
 function v = evalCheb(a,x)
 
 % Lengte van de vectoren bepalen
-n = size(a,2);
-N = size(x,2);
+n = length(a);
+N = length(x);
+
 
 % Vector v invullen
 v = zeros(1,N);

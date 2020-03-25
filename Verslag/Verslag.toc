@@ -8,3 +8,5 @@
 \contentsline {subsection}{\numberline {2.3}Bepalen van de co\"effici\"enten}{4}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Benaderen van een functie}{5}{subsection.2.4}
 \contentsline {section}{\numberline {3}Interpolatie in Chebyshev knooppunten}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Interpoleren van een functie}{6}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}$\qopname \relax o{cos}(x)$ benaderen}{6}{subsubsection.3.1.1}

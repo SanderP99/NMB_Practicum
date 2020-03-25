@@ -9,6 +9,7 @@
 \setlength{\mathindent}{1cm}
 %Hyperlinks
 \usepackage{hyperref}
+\usepackage{subcaption}
 
 %Opmaak hyperlinks
 \hypersetup{colorlinks=false,	urlcolor=cyan,pdfborder=0 0 0}
@@ -168,5 +169,62 @@ In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge func
 
 \section{Interpolatie in Chebyshev knooppunten}
 \label{sec:interpolatie}
+Veeltermen van graad $n-1$ kunnen een functie interpoleren in $n$ interpolatiepunten. De interpolatiepunten $x_k$, voor $k = 1,2,\ldots,n$, kunnen vrij gekozen worden. Er wordt gezocht naar een veelterm $g(x)$ van graad $n-1$ die de functie $f(x)$ interpoleert zodanig dat de volgende voorwaarde voldaan is:
+\begin{align*}
+g(x_i) = f(x_i), \hspace{1cm} i = 1,\ldots,n
+\end{align*}
+De veelterm $g(x)$ kan worden voorgesteld in de vorm $g(x) = \sum_{k=0}^{n-1}c_k\psi_k(x)$. Hierin zijn $\psi_k(x)$ de basisfuncties, in dit geval dus $T_k(x)$. De interpolatievoorwaarden leiden tot volgend lineair stelsel:
+\begin{align*}
+Mc = B
+\end{align*}
+De oplossing van dit stelsel zijn de co\"effici\"enten $c_k$. De elementen $M_{ij}$ van de matrix $M$ op rij $i$ en kolom $j$ worden gegeven door:
+\begin{align*}
+M_{ij} = \psi_j(x_i)
+\end{align*}
+en de elementen $B_i$ van de vector $B$ worden gegeven door:
+\begin{align*}
+B_i = f(x_i).
+\end{align*}
+
+In de functie \texttt{interpolate} worden de co\"effici\"enten $c_k$ en het conditiegetal van de matrix $M$ berekend. Als invoer verwacht de functie de interpolatiepunten $x_k$ en de te benaderen functie~$f(x)$. De code van deze functie is terug te vinden in Listing \ref{lst:interpolate}.
+
+\lstinputlisting[caption={interpolate.m}, label = {lst:interpolate}]{../interpolate.m}
+
+\subsection{Interpoleren van een functie}
+\subsubsection{$\cos(x)$ benaderen}
+De functie \texttt{interpolate} wordt gebruikt om de functie $f(x) = \cos(x)$ te benaderen. De co\"effici\"enten $c_k$ worden meegegeven aan de functie \texttt{evalCheb} om de interpolant $g(x)$ te kunnen plotten. Voor de interpolatiepunten $x_k$ worden eerst equidistanten punten gekozen. De resultaten worden voor verschillende $n$-waarden getoond in figuren \ref{lageNCosEqui} en \ref{fig:hogeNCosEqui}. Naarmate $n$ stijgt vertoont de benadering aan de randen meer afwijking ten op zichte van $f(x)$. Bij een te hoge $n$ zoals in figuur \ref{fig:hogeNCosEqui} is de benadering heel slecht doordat de gebruikte methode niet stabiel is bij equidistante interpolatiepunten. Door de interpolatiepunten zo te kiezen dat ze de nulpunten zijn van de $k$-de Chebyshev veelterm, wordt de methode wel stabiel. Deze nulpunten zijn van de vorm:
+\begin{align*}
+x_i = \cos\left(\frac{\pi(2i-1)}{2k}\right), \hspace{1cm} i = 1,\ldots,k
+\end{align*}
+In figuren \ref{fig:lageNCosNul} en \ref{fig:hogeNCosNul} zijn de interpolatieveeltermen met deze interpolatiepunten te zien. De fout aan de rand is ook veel kleiner zoals in figuur ... te zien is.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{../Afbeeldingen/cos_equi_laag.eps}
+\caption{Benaderingen van de functie $f(x) = \cos(x)$ met een lage $n$ en equidistante interpolatiepunten}
+\label{lageNCosEqui}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{../Afbeeldingen/cos_equi_hoog.eps}
+\caption{Benadering van de functie $f(x) = \cos(x)$ met een hoge $n$ en equidistante interpolatiepunten}
+\label{fig:hogeNCosEqui}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{../Afbeeldingen/cos_nul_laag.eps}
+\caption{Benadering van de functie $f(x) = \cos(x)$ met een lage $n$}
+\label{fig:lageNCosNul}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{../Afbeeldingen/cos_nul_hoog.eps}
+\caption{Benadering van de functie $f(x) = \cos(x)$ met een hoge $n$}
+\label{fig:hogeNCosNul}
+\end{figure}
 
 \end{document}
