@@ -6,7 +6,9 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Beste benadering}{3}{subsubsection.2.1.2}
 \contentsline {subsection}{\numberline {2.2}Evalueren van de Chebyshev veeltermen}{3}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Bepalen van de co\"effici\"enten}{4}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Benaderen van een functie}{5}{subsection.2.4}
-\contentsline {section}{\numberline {3}Interpolatie in Chebyshev knooppunten}{5}{section.3}
+\contentsline {subsection}{\numberline {2.4}Benaderen van een functie}{4}{subsection.2.4}
+\contentsline {section}{\numberline {3}Interpolatie in Chebyshev knooppunten}{6}{section.3}
 \contentsline {subsection}{\numberline {3.1}Interpoleren van een functie}{6}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}$\qopname \relax o{cos}(x)$ benaderen}{6}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.1}$\qopname \relax o{cos}(x)$ interpoleren}{6}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Runge functie interpoleren}{7}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Grootte van de fouten en conditie van de matrix $M$}{10}{subsubsection.3.1.3}

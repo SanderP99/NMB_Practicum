@@ -4,13 +4,9 @@ function v = evalCheb(a,x)
 n = length(a);
 N = length(x);
 
-
 % Vector v invullen
 v = zeros(1,N);
-for i = 1:1:N % v loop
-    z = x(i);
-    v(i) = 0;
-    for j = 1:1:n % a en T loop
-        v(i) = v(i) + a(j) * cos((j-1) * acos(z));
-    end
+j = (1:n);
+for i = 1:1:N
+    v(i) = sum(a(j) .* cos((j-1) .* acos(x(i))));    
 end
