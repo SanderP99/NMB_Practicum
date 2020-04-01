@@ -6,7 +6,7 @@ set(gca, 'Units', 'normalized','FontUnits','points','FontWeight','normal','FontS
 %fplot(f1)
 
 % Punten om te evalueren
-x = zeros(1,200);
+x = zeros(1,300);
 for i = 1:1:200
     x(i) = -1 + 1/200 + 2/200*(i-1);
 end
@@ -30,8 +30,8 @@ for n = 1:1:200
         x_nul(i) = cos(pi*(2*i-1)/(2*N));
     end
 
-    [c, kappa] = interpolate(x_nul, f2);
-    interpolant = evalCheb(c, x);
+    [c, kappa] = interpolate(x_equi, f2);
+    interpolant = evalCheb(c', x);
     maxFout = 0;
     for i = 1:1:200
         afstand = abs(interpolant(i) - f2(x(i)));
@@ -50,4 +50,4 @@ xlabel('$n$', 'interpreter', 'latex')
 ylabel('Maximaal residu', 'interpreter', 'latex')
 %axis([-1 1 0 1]);
 
-%print  ('-r500', '-depsc2', 'runge_nul_fout.eps')
+print  ('-r500', '-depsc2', 'runge_equi_fout.eps')

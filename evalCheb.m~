@@ -2,6 +2,7 @@ function v = evalCheb(a,x)
 
 % Lengte van de vectoren bepalen
 n = length(a);
+N = length(x);
 
 % Vector v invullen
 j = (1:n);

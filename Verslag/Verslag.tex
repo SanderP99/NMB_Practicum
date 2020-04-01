@@ -46,7 +46,7 @@ escapeinside={\%*}{*)} % if you want to add a comment within your code
 \begin{document}
 
 \title{\textbf{Numerieke Modellering en Benadering: Chebyshev veeltermen}}
-\author{Sander Prenen}
+\author{Sander Prenen, r0701014}
 
 \date{15 april 2020}
 \begin{titlepage}
@@ -58,7 +58,7 @@ escapeinside={\%*}{*)} % if you want to add a comment within your code
 \tableofcontents
 \newpage
 \section{Inleiding}
-In dit practicum worden de benaderingseigenschappen van Chebyshev veeltermen van de eerste soort. Deze veeltermen blijken uiterst geschikt voor het benaderen van eindige, re\"ele functies met behulp van de continue kleinste kwadratenbenadering. Ook zijn hun nulpunten vaak een uitstekende keuze voor de abscissa voor veelterminterpolatie. In sectie \ref{sec:benadering} wordt dieper ingegaan op de benaderingseigenschappen, terwijl in sectie \ref{sec:interpolatie} de interpolatie besporken wordt.
+In dit practicum worden de benaderingseigenschappen van Chebyshev veeltermen van de eerste soort bekeken. Deze veeltermen blijken uiterst geschikt voor het benaderen van eindige, re\"ele functies met behulp van de continue kleinste kwadratenbenadering. Ook zijn hun nulpunten vaak een uitstekende keuze voor de abscissa voor veelterminterpolatie. In sectie \ref{sec:benadering} wordt dieper ingegaan op de benaderingseigenschappen, terwijl in sectie \ref{sec:interpolatie} de interpolatie besproken wordt.
 
 \section{Continue kleinste kwadratenbenadering met Chebyshev veeltermen}
 \label{sec:benadering}
@@ -133,7 +133,7 @@ Voor het bepalen van de co\"effici\"enten $a_k$ kan vergelijking (\ref{eq:a_K}) 
 \begin{align*}
 a_k \approx \frac{1}{n}f(1) + \frac{2}{n}\sum_{l=1}^{n-1}f\left(\cos\left(\frac{l\pi}{n}\right)\right)\cos\left(k\frac{l\pi}{n}\right) + \frac{(-1)^k}{n}f(-1), \hspace{1cm} 0 < k \leq n
 \end{align*}
-Hieruit volgt dat de co\"effici\"enten $a_k$ kunnen berekend worden als de DCT van de rij:
+Hieruit volgt dat de co\"effici\"enten $a_k$ kunnen berekend worden als de discrete cosinus transformatie (DCT) van de rij:
 \begin{align}
 f(z_{0,n}),f(z_{1,n}), \ldots, f(z_{n,n})
 \label{eq:DCTrij}
@@ -155,9 +155,9 @@ In de functie \texttt{approxCheby} wordt de DCT van de rij in vergelijking (\ref
 
 
 \subsection{Benaderen van een functie}
-De algoritmes die in Listing \ref{lst:evalCheb} en \ref{lst:approxCheby} te zien zijn, kunnen gebruikt worden bij het benaderen van een willekeurige functie in $C([-1,1])$. Om een functie te benaderen worden de co\"effic\"enten $a_k$ bepaald met \texttt{approxCheby}. Deze co\"effic\"enten worden meegegeven aan \texttt{evalCheb}. De punten waarin de benadering ge\"evalueerd moet worden meegegeven in de $x$ vector. In dit geval wordt gekozen voor 200 equidistante punten tussen $-1$ en $1$.
+De algoritmes die in Listing \ref{lst:evalCheb} en \ref{lst:approxCheby} te zien zijn, kunnen gebruikt worden bij het benaderen van een willekeurige functie in $C([-1,1])$. Om een functie te benaderen worden de co\"effic\"enten $a_k$ bepaald met \texttt{approxCheby}. Deze co\"effic\"enten worden meegegeven aan \texttt{evalCheb}. De punten waarin de benadering ge\"evalueerd moet worden, worden meegegeven in de $x$ vector. In dit geval wordt gekozen voor 200 equidistante punten tussen $-1$ en $1$.
 
-In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge functie in ruimtes $V_2$ tot $V_{20}$ weergegeven. De Runge functie heeft als voorschrift $f(x) = \frac{1}{25x^2+1}$. Figuur \ref{fig:rungeFout} toont de maximale afwijking $d(y_n,f) = \max_{x \in [-1,1]}|y_n(x)-f(x)|$, in functie van de graad van de benaderende veelterm. 
+In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge functie in ruimtes $V_2$ tot $V_{20}$ weergegeven. De Runge functie heeft als voorschrift $f(x) = \frac{1}{25x^2+1}$. Figuur \ref{fig:rungeFoutBenadering} toont de maximale afwijking $d(y_n,f) = \max_{x \in [-1,1]}|y_n(x)-f(x)|$, in functie van de graad $n$ van de benaderende veelterm. 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/rungeBenadering.eps}
@@ -169,12 +169,12 @@ In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge func
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/rungeFout.eps}
 \caption{De maximale fout voor de benadering van de runge functie in de ruimtes $V_2$ tot $V_{100}$.
-\label{fig:rungeFout}}
+\label{fig:rungeFoutBenadering}}
 \end{figure}
 
 \section{Interpolatie in Chebyshev knooppunten}
 \label{sec:interpolatie}
-Veeltermen van graad $n-1$ kunnen een functie interpoleren in $n$ interpolatiepunten. De interpolatiepunten $x_k$, voor $k = 1,2,\ldots,n$, kunnen vrij gekozen worden. Er wordt gezocht naar een veelterm $g(x)$ van graad $n-1$ die de functie $f(x)$ interpoleert zodanig dat de volgende voorwaarde voldaan is:
+Veeltermen van graad $n-1$ kunnen een functie interpoleren in $n$ interpolatiepunten. De interpolatiepunten $x_k$, voor $k = 1,2,\ldots,n$, kunnen vrij gekozen worden. Er wordt gezocht naar een veelterm $g(x)$ van graad $n-1$ die de functie $f(x)$ interpoleert, zodanig dat de volgende voorwaarde voldaan is:
 \begin{align*}
 g(x_i) = f(x_i), \hspace{1cm} i = 1,\ldots,n
 \end{align*}
@@ -197,76 +197,78 @@ In de functie \texttt{interpolate} worden de co\"effici\"enten $c_k$ en het cond
 \lstinputlisting[caption={interpolate.m}, label = {lst:interpolate}]{../interpolate.m}
 
 \subsection{Interpoleren van een functie}
-\subsubsection{$\cos(x)$ interpoleren}
+\subsubsection{Cosinus functie interpoleren}
 \label{cosInterpoleren}
-De functie \texttt{interpolate} wordt gebruikt om de functie $f(x) = \cos(x)$ te benaderen. De co\"effici\"enten $c_k$ worden meegegeven aan de functie \texttt{evalCheb} om de interpolant $g(x)$ te kunnen plotten. Voor de interpolatiepunten $x_k$ worden eerst equidistanten punten gekozen. De resultaten worden voor verschillende $n$-waarden getoond in figuren \ref{lageNCosEqui} en \ref{fig:hogeNCosEqui}. Naarmate $n$ stijgt vertoont de benadering aan de randen meer afwijking ten op zichte van $f(x)$. Bij een te hoge $n$ zoals in figuur \ref{fig:hogeNCosEqui} is de benadering heel slecht doordat de gebruikte methode niet stabiel is bij equidistante interpolatiepunten. Door de interpolatiepunten zo te kiezen dat ze de nulpunten zijn van de $k$-de Chebyshev veelterm, wordt de methode wel stabiel. Deze nulpunten zijn van de vorm:
+De functie \texttt{interpolate} wordt gebruikt om de functie $f(x) = \cos(x)$ te benaderen. De co\"effici\"enten $c_k$ worden meegegeven aan de functie \texttt{evalCheb} om de interpolant $g(x)$ te kunnen plotten. Voor de interpolatiepunten $x_k$ worden eerst equidistante punten gekozen. De resultaten worden voor verschillende $n$-waarden getoond in figuren \ref{lageNCosEqui} en \ref{fig:hogeNCosEqui}. Naarmate $n$ stijgt vertoont de benadering aan de randen meer afwijking ten op zichte van $f(x)$. Bij een te hoge $n$ zoals in figuur \ref{fig:hogeNCosEqui} is de benadering aan de rand heel slecht doordat de gebruikte methode niet stabiel is bij equidistante interpolatiepunten. Echter wordt de benadering in het midden steeds beter. Door de interpolatiepunten zo te kiezen dat ze de nulpunten zijn van de $k$-de Chebyshev veelterm, wordt de methode wel stabiel. Deze nulpunten zijn van de vorm:
 \begin{align*}
 x_i = \cos\left(\frac{\pi(2i-1)}{2k}\right), \hspace{1cm} i = 1,\ldots,k
 \end{align*}
-In figuren \ref{fig:lageNCosNul} en \ref{fig:hogeNCosNul} zijn de interpolatieveeltermen met deze interpolatiepunten te zien. De fouten aan de randen zijn veel kleiner en zelfs voor hoge $n$ waarden is de methode stabiel. Dit kan gezien worden in figuur \ref{fig:hogeNCosNul}. De fout aan de rand is ook veel kleiner zoals in figuur ... te zien is.
+In figuren \ref{fig:lageNCosNul} en \ref{fig:hogeNCosNul} zijn de interpolatieveeltermen met deze interpolatiepunten te zien. De fouten aan de randen zijn veel kleiner en zelfs voor hoge $n$ waarden is de methode stabiel. Dit kan gezien worden in figuur \ref{fig:hogeNCosNul}.
 
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_equi_laag.eps}
-\caption{Benaderingen van de functie $f(x) = \cos(x)$ met een lage $n$ en equidistante interpolatiepunten}
+\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een lage $n$ en equidistante interpolatiepunten}
 \label{lageNCosEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_equi_hoog.eps}
-\caption{Benadering van de functie $f(x) = \cos(x)$ met een hoge $n$ en equidistante interpolatiepunten}
+\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een hoge $n$ en equidistante interpolatiepunten}
 \label{fig:hogeNCosEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_nul_laag.eps}
-\caption{Benadering van de functie $f(x) = \cos(x)$ met een lage $n$}
+\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een lage $n$}
 \label{fig:lageNCosNul}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_nul_hoog.eps}
-\caption{Benadering van de functie $f(x) = \cos(x)$ met een hoge $n$}
+\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een hoge $n$}
 \label{fig:hogeNCosNul}
 \end{figure}
 
+\newpage
 \subsubsection{Runge functie interpoleren}
 Met eenzelfde werkwijze als in sectie \ref{cosInterpoleren} wordt nu de runge functie $f(x) = \frac{1}{25x^2+1}$ ge\"interpoleerd. Eerst worden equidistante interpolatiepunten $x_k$ gebruikt. Deze resultaten zijn te zien in figuren \ref{fig:lageNRungeEqui} en \ref{fig:hogeNRungeEqui}. Opnieuw kunnen als interpolatiepunten ook de nulpunten van de $k$-de Chebyshev veelterm gebruikt worden. Hierdoor wordt de methode stabiel en verdwijnen de fouten aan de randen. De resultaten van deze interpolaties kunnen in figuren \ref{fig:lageNRungeNul} en \ref{fig:hogeNRungeNul} gezien worden.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_equi_laag.eps}
-\caption{Benaderingen van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$ en equidistante interpolatiepunten}
+\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$ en equidistante interpolatiepunten}
 \label{fig:lageNRungeEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_equi_hoog.eps}
-\caption{Benadering van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$ en equidistante interpolatiepunten}
+\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$ en equidistante interpolatiepunten}
 \label{fig:hogeNRungeEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_nul_laag.eps}
-\caption{Benadering van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$}
+\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$}
 \label{fig:lageNRungeNul}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_nul_hoog.eps}
-\caption{Benadering van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$}
+\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$}
 \label{fig:hogeNRungeNul}
 \end{figure}
 
+\newpage
 \subsubsection{Grootte van de fouten en conditie van de matrix $M$}
-In figuren \ref{fig:cosFout} en \ref{fig:rungeFout} worden de maximale afwijking $d(g,f) = \max_{x\in [-1,1]} | g(x) - f(x)|$, in functie van het aantal interpolatiepunten geschetst. Voor equidistante interpolatiepunten daalt de fout eerst, maar door de instabiliteit van de methode zal vanaf een grotere $n$ de fout weer stijgen. Als de nulpunten van de $k$-de Chebyshev veelterm als interpolatiepunten worden gekozen dan is de fout monotoon dalend tot de machineprecisie. Dat de gebruikte methode instabiel is, kan ook afgeleid worden van het conditiegetal $\kappa$ van de matrix $M$ in vergelijking (\ref{eq:matrixM}). Dit getal geeft weer het resultaat van een bewerking veranderd met de invoer. Hoe hoger het conditiegetal, hoe groter de afwijking op het resultaat zal zijn bij een kleine afwijking van de invoer. In figuur \ref{fig:kappa} is te zien hoe het conditiegetal $\kappa$ van de matrix $M$ evolueert in functie van het aantal interpolatiepunten $n$. Bij een equidistante verdeling van de interpolatiepunten, neemt $\kappa$ al snel een heel grote waarde aan, hetgeen de instabiliteit van de methode verklaart. Indien de nulpunten van de $k$-de Chebyshev veelterm gebruikt worden om te interpoleren, blijft $\kappa$ een constante, lage waarde onafhankelijk van $n$. Dit verklaart waarom met deze interpolatiepunten de methode wel stabiel is.
+In figuren \ref{fig:cosFout} en \ref{fig:rungeFout} wordt de maximale afwijking $d(g,f) = \max_{x\in [-1,1]} | g(x) - f(x)|$, in functie van het aantal interpolatiepunten geschetst. Voor equidistante interpolatiepunten daalt de fout eerst, maar door de instabiliteit van de methode zal vanaf een grotere $n$ de fout weer stijgen. Als de nulpunten van de $k$-de Chebyshev veelterm als interpolatiepunten worden gekozen dan is de fout monotoon dalend tot de machineprecisie. Dat de gebruikte methode instabiel is, kan ook afgeleid worden uit het conditiegetal $\kappa$ van de matrix $M$ in vergelijking (\ref{eq:matrixM}). Dit getal geeft weer hoe het resultaat van een bewerking verandert met de invoer. Hoe hoger het conditiegetal, hoe groter de afwijking op het resultaat zal zijn bij een kleine afwijking van de invoer. In figuur \ref{fig:kappa} is te zien hoe het conditiegetal $\kappa$ van de matrix $M$ evolueert in functie van het aantal interpolatiepunten $n$. Bij een equidistante verdeling van de interpolatiepunten, neemt $\kappa$ al snel een heel grote waarde aan, hetgeen de instabiliteit van de methode verklaart. Indien de nulpunten van de $k$-de Chebyshev veelterm gebruikt worden om te interpoleren, blijft $\kappa$ een constante, lage waarde onafhankelijk van $n$. Dit verklaart waarom met deze interpolatiepunten de methode wel stabiel is.
 
 
 \begin{figure}

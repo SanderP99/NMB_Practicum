@@ -30,18 +30,18 @@ for n = 1:1:100
         x_nul(i) = cos(pi*(2*i-1)/(2*N));
     end
 
-    [c, kappa] = interpolate(x_nul, f1);
-    interpolant = evalCheb(c, x);
+    [c, kappa] = interpolate(x_equi, f1);
+    interpolant = evalCheb(c', x);
     kappas(n) = kappa;
         
     
 end
 %legend({'Fout'}, 'interpreter', 'latex', 'location', 'south', 'NumColumns', 1, 'FontSize', 20,'FontWeight', 'normal', 'FontName', 'Times');
-plot(n_kappa, kappas)
+semilogy(n_kappa, kappas)
 set(gca, 'Units', 'normalized','FontUnits','points','FontWeight','normal','FontSize',14,'FontName','Times')
 %legend({'Conditiegetal $M$'}, 'interpreter', 'latex', 'location', 'northeast', 'NumColumns', 1, 'FontSize', 20,'FontWeight', 'normal', 'FontName', 'Times');
 xlabel('$n$', 'interpreter', 'latex')
 ylabel('Conditiegetal $M$', 'interpreter', 'latex')
 %axis([-1 1 0 1]);
 
-print  ('-r500', '-depsc2', 'cos_nul_kappa.eps')
+%print  ('-r500', '-depsc2', 'cos_equi_kappa.eps')

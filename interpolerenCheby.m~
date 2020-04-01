@@ -3,12 +3,12 @@ f2 = @(x) 1./(25*x.^2+1);
 figure('Renderer', 'painters', 'Position', [10 10 1500 600], 'PaperPositionMode', 'auto');
 set(gca, 'Units', 'normalized','FontUnits','points','FontWeight','normal','FontSize',14,'FontName','Times')
 hold on
-fplot(f2)
+fplot(f1)
 
 % Punten om te evalueren
 x = linspace(-1,1,300);
 
-for n = [50,100,200]
+for n = [3,4,5,10,20,50,100]
     N = n;
     % Equidistante punten
     x_equi = zeros(1,N);
@@ -23,13 +23,13 @@ for n = [50,100,200]
         x_nul(i) = cos(pi*(2*i-1)/(2*N));
     end
 
-    [c, kappa] = interpolate(x_equi, f2);
+    [c, kappa] = interpolate(x_nul, f1);
     interpolant = evalCheb(c', x);
 
     plot(x, interpolant)
 end
-legend({'$f(x) = \frac{1}{25x^2+1}$','50', '100', '200'}, 'interpreter', 'latex', 'location', 'south', 'NumColumns', 3, 'FontSize', 20,'FontWeight', 'normal', 'FontName', 'Times');
+legend({'$f(x) = \cos(x)$', '3', '4', '5', '10', '20', '50', '100'}, 'interpreter', 'latex', 'location', 'south', 'NumColumns', 3, 'FontSize', 20,'FontWeight', 'normal', 'FontName', 'Times');
 hold off
 axis([-1 1 0 1]);
 
-print  ('-r500', '-depsc2', 'runge_equi_hoog.eps') 
+%print  ('-r500', '-depsc2', 'cos_nul_laag.eps') 

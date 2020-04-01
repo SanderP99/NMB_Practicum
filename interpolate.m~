@@ -7,11 +7,15 @@ n = length(x);
 B = f(x)';
 
 % M opstellen
+M = zeros(n);
 j = (1:n);
-M = cos((j-1) .* acos(x'));
+for i = 1:1:n
+    M(i,j) = cos((j-1) * acos(x(i)));
+end
 
 % Conditiegetal
 kappa = cond(M);
 
-% Stelsel oplossen
-c = M \ B;
+% QR-factorisatie
+[Q, R] = qr(M);
+c = R \ transpose(Q) * B;
