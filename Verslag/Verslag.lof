@@ -1,0 +1,16 @@
+\babel@toc {dutch}{}
+\contentsline {figure}{\numberline {1}{\ignorespaces De beste benaderingen van de Runge functie in de ruimtes $V_2$ tot $V_{20}$ \relax }}{4}{figure.caption.3}
+\contentsline {figure}{\numberline {2}{\ignorespaces Maximale fout voor benadering van de Runge functie}}{5}{figure.caption.4}
+\contentsline {figure}{\numberline {3}{\ignorespaces Cosinus interpolatie, weinig equidistante interpolatiepunten}}{6}{figure.caption.5}
+\contentsline {figure}{\numberline {4}{\ignorespaces Cosinus interpolatie, veel equidistante interpolatiepunten}}{6}{figure.caption.6}
+\contentsline {figure}{\numberline {5}{\ignorespaces Cosinus interpolatie, weinig Chebyshev knooppunten }}{7}{figure.caption.7}
+\contentsline {figure}{\numberline {6}{\ignorespaces Cosinus interpolatie, veel Chebyshev knooppunten }}{7}{figure.caption.8}
+\contentsline {figure}{\numberline {7}{\ignorespaces Runge interpolatie, weinig equidistante interpolatiepunten}}{8}{figure.caption.9}
+\contentsline {figure}{\numberline {8}{\ignorespaces Ruunge interpolatie, veel equidistante interpolatiepunten }}{8}{figure.caption.10}
+\contentsline {figure}{\numberline {9}{\ignorespaces Runge interpolatie, weinig Chebyshev knooppunten }}{9}{figure.caption.11}
+\contentsline {figure}{\numberline {10}{\ignorespaces Runge interpolatie, veel Chebyshev knooppunten }}{9}{figure.caption.12}
+\contentsline {figure}{\numberline {11}{\ignorespaces Fouten over het hele interval bij cosinus interpolatie}}{10}{figure.caption.13}
+\contentsline {figure}{\numberline {12}{\ignorespaces Fouten over het hele interval bij Runge interpolatie}}{11}{figure.caption.14}
+\contentsline {figure}{\numberline {13}{\ignorespaces Maximale fout bij cosinus interpolatie}}{11}{figure.caption.15}
+\contentsline {figure}{\numberline {14}{\ignorespaces Maximale fout bij Runge interpolatie}}{12}{figure.caption.16}
+\contentsline {figure}{\numberline {15}{\ignorespaces Conditiegetal $\kappa $ van matrix $M$ in functie van het aantal interpolatiepunten~$n$\relax }}{12}{figure.caption.17}

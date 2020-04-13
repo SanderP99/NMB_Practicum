@@ -56,6 +56,7 @@ escapeinside={\%*}{*)} % if you want to add a comment within your code
 
 \newpage
 \tableofcontents
+\listoffigures
 \newpage
 \section{Inleiding}
 In dit practicum worden de benaderingseigenschappen van Chebyshev veeltermen van de eerste soort bekeken. Deze veeltermen blijken uiterst geschikt voor het benaderen van eindige, re\"ele functies met behulp van de continue kleinste kwadratenbenadering. Ook zijn hun nulpunten vaak een uitstekende keuze voor de abscissa voor veelterminterpolatie. In sectie \ref{sec:benadering} wordt dieper ingegaan op de benaderingseigenschappen, terwijl in sectie \ref{sec:interpolatie} de interpolatie besproken wordt.
@@ -132,7 +133,7 @@ f_i = y_n(x_i) = a_0T_0(x_i) + a_1T_1(x_i) + \ldots + a_nT_n(x_i)
 
 In Listing \ref{lst:evalCheb} wordt de MATLAB code voor deze berekening weergegeven.
 
-\lstinputlisting[caption={evalCheb.m}, label = {lst:evalCheb}]{../evalCheb.m}
+\lstinputlisting[caption={evalCheb.m}, label = {lst:evalCheb}]{../Code/evalCheb.m}
 
 
 \subsection{Bepalen van de co\"effici\"enten}
@@ -157,7 +158,7 @@ k\arccos(x) = l\pi \Leftrightarrow x = \cos\left(\frac{l\pi}{k}\right)
 \end{align*}
 
 In de functie \texttt{approxCheby} wordt de DCT van de rij in vergelijking (\ref{eq:DCTrij}) bepaald. De code van deze functie kan gevonden worden in Listing \ref{lst:approxCheby}.
-\lstinputlisting[caption={approxCheby.m}, label = {lst:approxCheby}]{../approxCheby.m}
+\lstinputlisting[caption={approxCheby.m}, label = {lst:approxCheby}]{../Code/approxCheby.m}
 
 
 \subsection{Benaderen van een functie}
@@ -167,14 +168,14 @@ In figuur \ref{fig:rungeFunctie} worden de beste benaderingen voor de Runge func
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/rungeBenadering.eps}
-\caption{De beste benaderingen van de Runge functie in de ruimtes $V_2$ tot $V_{20}$.
+\caption{De beste benaderingen van de Runge functie in de ruimtes $V_2$ tot $V_{20}$
 \label{fig:rungeFunctie}}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/rungeFout.eps}
-\caption{De maximale fout voor de benadering van de runge functie in de ruimtes $V_2$ tot $V_{100}$.
+\caption[Maximale fout voor benadering van de Runge functie]{De maximale fout voor de benadering van de Runge functie in de ruimtes $V_2$ tot $V_{100}$
 \label{fig:rungeFoutBenadering}}
 \end{figure}
 
@@ -200,7 +201,7 @@ B_i = f(x_i).
 
 In de functie \texttt{interpolate} worden de co\"effici\"enten $c_k$ en het conditiegetal van de matrix $M$ berekend. Als invoer verwacht de functie de interpolatiepunten $x_k$ en de te benaderen functie~$f(x)$. De code van deze functie is terug te vinden in Listing \ref{lst:interpolate}.
 
-\lstinputlisting[caption={interpolate.m}, label = {lst:interpolate}]{../interpolate.m}
+\lstinputlisting[caption={interpolate.m}, label = {lst:interpolate}]{../Code/interpolate.m}
 
 \subsection{Interpoleren van een functie}
 \subsubsection{Cosinus functie interpoleren}
@@ -215,28 +216,28 @@ Deze punten worden ook wel de Chebyshev knooppunten genoemd. In figuren \ref{fig
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_equi_laag.eps}
-\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een lage $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Cosinus interpolatie, weinig equidistante interpolatiepunten]{Interpolatie van de functie $f(x) = \cos(x)$ met een lage $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{lageNCosEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_equi_hoog.eps}
-\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een hoge $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Cosinus interpolatie, veel equidistante interpolatiepunten]{Interpolatie van de functie $f(x) = \cos(x)$ met een hoge $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:hogeNCosEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_nul_laag.eps}
-\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een lage $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Cosinus interpolatie, weinig Chebyshev knooppunten ]{Interpolatie van de functie $f(x) = \cos(x)$ met een lage $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:lageNCosNul}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/cos_nul_hoog.eps}
-\caption{Interpolatie van de functie $f(x) = \cos(x)$ met een hoge $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Cosinus interpolatie, veel Chebyshev knooppunten ]{Interpolatie van de functie $f(x) = \cos(x)$ met een hoge $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:hogeNCosNul}
 \end{figure}
 
@@ -247,28 +248,28 @@ Met eenzelfde werkwijze als in sectie \ref{cosInterpoleren} wordt nu de runge fu
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_equi_laag.eps}
-\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Runge interpolatie, weinig equidistante interpolatiepunten]{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:lageNRungeEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_equi_hoog.eps}
-\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Ruunge interpolatie, veel equidistante interpolatiepunten ]{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$ en equidistante interpolatiepunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:hogeNRungeEqui}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_nul_laag.eps}
-\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Runge interpolatie, weinig Chebyshev knooppunten ]{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een lage $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:lageNRungeNul}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{../Afbeeldingen/runge_nul_hoog.eps}
-\caption{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
+\caption[Runge interpolatie, veel Chebyshev knooppunten ]{Interpolatie van de functie $f(x) = \frac{1}{25x^2+1}$ met een hoge $n$ en Chebyshev knooppunten. De cijfers in de legende zijn de verschillende $n$-waarden.}
 \label{fig:hogeNRungeNul}
 \end{figure}
 
@@ -282,14 +283,14 @@ Dat de gebruikte methode instabiel is, kan ook afgeleid worden uit het conditieg
 \begin{figure}
 \centering
 \includegraphics[width = \linewidth]{../Afbeeldingen/cos_heleFout.eps}
-\caption{Fouten over het hele interval $[-1,1]$ voor verschillende waarden van $n$ voor de interpolatie van de cosinus functie. De bovenste rij figuren geeft de fout weer voor equidistante interpolatiepunten, terwijl de onderste rij figuren de fout voor Chebyshev-interpolatiepunten bevat. De interpolatiepunten zijn aangeduid in de eerste plot van elke reeks. Ze zijn weggelaten bij de andere plots om ze niet te onoverzichtelijk te maken.}
+\caption[Fouten over het hele interval bij cosinus interpolatie]{Fouten over het hele interval $[-1,1]$ voor verschillende waarden van $n$ voor de interpolatie van de cosinus functie. De bovenste rij figuren geeft de fout weer voor equidistante interpolatiepunten, terwijl de onderste rij figuren de fout voor Chebyshev-interpolatiepunten bevat. De interpolatiepunten zijn aangeduid in de eerste plot van elke reeks. Ze zijn weggelaten bij de andere plots om ze niet te onoverzichtelijk te maken.}
 \label{fig:cosHeleFout}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width = \linewidth]{../Afbeeldingen/runge_heleFout.eps}
-\caption{Fouten over het hele interval $[-1,1]$ voor verschillende waarden van $n$ voor de interpolatie van de runge functie. De bovenste rij figuren geeft de fout weer voor equidistante interpolatiepunten, terwijl de onderste rij figuren de fout voor Chebyshev-interpolatiepunten bevat. De interpolatiepunten zijn aangeduid in de eerste plot van elke reeks. Ze zijn weggelaten bij de andere plots om ze niet te onoverzichtelijk te maken.}
+\caption[Fouten over het hele interval bij Runge interpolatie]{Fouten over het hele interval $[-1,1]$ voor verschillende waarden van $n$ voor de interpolatie van de runge functie. De bovenste rij figuren geeft de fout weer voor equidistante interpolatiepunten, terwijl de onderste rij figuren de fout voor Chebyshev-interpolatiepunten bevat. De interpolatiepunten zijn aangeduid in de eerste plot van elke reeks. Ze zijn weggelaten bij de andere plots om ze niet te onoverzichtelijk te maken.}
 \label{fig:rungeHeleFout}
 \end{figure}
 
@@ -303,7 +304,7 @@ Dat de gebruikte methode instabiel is, kan ook afgeleid worden uit het conditieg
 \includegraphics[width=\linewidth]{../Afbeeldingen/cos_nul_fout.eps}
 \caption{Cosinus interpolatie met Chebyshev knooppunten}
 \end{subfigure}
-\caption{Fout bij interpolatie van de cosinus in functie van het aantal interpolatiepunten $n$}
+\caption[Maximale fout bij cosinus interpolatie]{Fout bij interpolatie van de cosinus in functie van het aantal interpolatiepunten $n$}
 \label{fig:cosFout}
 \end{figure}
 
@@ -318,7 +319,7 @@ Dat de gebruikte methode instabiel is, kan ook afgeleid worden uit het conditieg
 \caption{Runge functie interpolatie met Chebyshev knooppunten}
 \label{rungeNulFout}
 \end{subfigure}
-\caption{Fout bij interpolatie van de runge functie in functie van het aantal interpolatiepunten $n$.}
+\caption[Maximale fout bij Runge interpolatie]{Fout bij interpolatie van de runge functie in functie van het aantal interpolatiepunten $n$.}
 \label{fig:rungeFout}
 \end{figure}
 
