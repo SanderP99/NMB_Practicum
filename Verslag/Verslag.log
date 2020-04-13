@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=latex 2020.1.8)  1 APR 2020 13:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=latex 2020.1.8)  13 APR 2020 10:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -599,32 +599,20 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 68.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 82.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 82.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 82.
-
 [2]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 128.
+nput line 135.
  (../evalCheb.m
 LaTeX Font Info:    Try loading font information for TS1+pcr on input line 8.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ))
-[3] (../approxCheby.m)
+(../approxCheby.m [3])
 File: ../Afbeeldingen/rungeBenadering.eps Graphic file (type eps)
- <../Afbeeldingen/rungeBenadering.eps> [4]
+ <../Afbeeldingen/rungeBenadering.eps>
 File: ../Afbeeldingen/rungeFout.eps Graphic file (type eps)
 
-<../Afbeeldingen/rungeFout.eps> [5] (../interpolate.m
+<../Afbeeldingen/rungeFout.eps> [4] (../interpolate.m
 LaTeX Font Info:    Try loading font information for OMS+pcr on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omspcr.fd
@@ -632,7 +620,7 @@ File: omspcr.fd
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
-)
+) [5]
 File: ../Afbeeldingen/cos_equi_laag.eps Graphic file (type eps)
 
 <../Afbeeldingen/cos_equi_laag.eps>
@@ -644,7 +632,7 @@ File: ../Afbeeldingen/cos_nul_laag.eps Graphic file (type eps)
 File: ../Afbeeldingen/cos_nul_hoog.eps Graphic file (type eps)
  <../Afbeeldingen/cos_nul_hoog.eps> [6]
 [7]
-Overfull \hbox (5.56808pt too wide) in paragraph at lines 239--240
+Overfull \hbox (5.56808pt too wide) in paragraph at lines 245--246
 \OT1/cmr/m/n/12 Met een-zelfde werk-wijze als in sec-tie [][][][] wordt nu de r
 unge func-tie $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/
 n/12 ) = []$ ge[]^^Pnterpoleerd.
@@ -662,18 +650,26 @@ File: ../Afbeeldingen/runge_nul_hoog.eps Graphic file (type eps)
 [8] [9]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 270.
+(hyperref)                removing `math shift' on input line 276.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 270.
+(hyperref)                removing `math shift' on input line 276.
 
+File: ../Afbeeldingen/cos_heleFout.eps Graphic file (type eps)
+<../Afbeeldingen/cos_heleFout.eps>
+File: ../Afbeeldingen/runge_heleFout.eps Graphic file (type eps)
+ <../Afbeeldingen/runge_heleFout.eps>
 File: ../Afbeeldingen/cos_equi_fout.eps Graphic file (type eps)
+
 <../Afbeeldingen/cos_equi_fout.eps>
 File: ../Afbeeldingen/cos_nul_fout.eps Graphic file (type eps)
  <../Afbeeldingen/cos_nul_fout.eps>
-File: ../Afbeeldingen/runge_equi_fout.eps Graphic file (type eps)
+Underfull \hbox (badness 5077) in paragraph at lines 304--304
+[]\OT1/cmr/m/n/10.95 (b) |Co-si-nus in-ter-po-la-tie met Che-byshev
+ []
 
+File: ../Afbeeldingen/runge_equi_fout.eps Graphic file (type eps)
 <../Afbeeldingen/runge_equi_fout.eps>
 File: ../Afbeeldingen/runge_nul_fout.eps Graphic file (type eps)
  <../Afbeeldingen/runge_nul_fout.eps>
@@ -682,28 +678,28 @@ File: ../Afbeeldingen/runge_equi_kappa.eps Graphic file (type eps)
 <../Afbeeldingen/runge_equi_kappa.eps>
 File: ../Afbeeldingen/runge_nul_kappa.eps Graphic file (type eps)
  <../Afbeeldingen/runge_nul_kappa.eps>
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 315.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 341.
 
-[10] [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 315.
+[10] [11] [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 341.
  (./Verslag.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 315.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 315.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 341.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 341.
 Package rerunfilecheck Info: File `Verslag.out' has not changed.
-(rerunfilecheck)             Checksum: B5A3D80FAD6A295BF69AB5159840EA0A;1061.
+(rerunfilecheck)             Checksum: 965A570364CF349B619D39A53B864013;962.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 315.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 341.
  ) 
 Here is how much of TeX's memory you used:
- 10987 strings out of 494300
- 162235 string characters out of 6163422
- 330965 words of memory out of 5000000
- 14188 multiletter control sequences out of 15000+600000
- 15489 words of font info for 60 fonts, out of 8000000 for 9000
+ 10993 strings out of 494300
+ 162431 string characters out of 6163422
+ 328965 words of memory out of 5000000
+ 14193 multiletter control sequences out of 15000+600000
+ 15152 words of font info for 59 fonts, out of 8000000 for 9000
  372 hyphenation exceptions out of 8191
- 42i,14n,42p,1392b,1766s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,14n,42p,937b,1766s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Verslag.dvi (12 pages, 67788 bytes).
+Output written on Verslag.dvi (13 pages, 70596 bytes).
